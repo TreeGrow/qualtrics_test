@@ -144,15 +144,15 @@
             const minutes = Math.floor(current / 60);
             const seconds = current % 60;
             timestamp.textContent = `${formatTime(minutes)}:${formatTime(seconds)} / 00:30`;
-            // Check if the video has reached the end time
-            if (video.currentTime >= endTime) {
-                video.pause(); // Stop the video
-                // 发送 clickCount 给父页面
-                window.parent.postMessage({
-                    type: 'click-count',
-                    clickCount: clickCount
-                }, event.origin);
-            }
+            // // Check if the video has reached the end time
+            // if (video.currentTime >= endTime) {
+            //     video.pause(); // Stop the video
+            //     // 发送 clickCount 给父页面
+            //     window.parent.postMessage({
+            //         type: 'click-count',
+            //         clickCount: clickCount
+            //     }, event.origin);
+            // }
         });
 
         function formatTime(time) {
