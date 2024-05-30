@@ -180,11 +180,11 @@
             return;
         }
 
-        if (event.data === 'get-practiceclick-count') {
-            // 发送 practiceclickCount 给父页面
+        if (event.data === 'get-practice-click-count') {
+            // 发送 clickCount 给父页面
             window.parent.postMessage({
-                type: 'practiceclick-count',
-                praticecountclickCount: clickCount
+                type: 'practice-click-count',
+                praticecCount: clickCount
             }, event.origin);
         }
     });
