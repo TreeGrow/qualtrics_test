@@ -103,7 +103,7 @@
 </div>
 
 <script>
-    let clickCount = 0;  //记录相机点击次数
+    let clickCount = 0;  // 记录相机点击次数
     const endTime = 30;
     const offsetTime = 0; // 时间偏移量
     const container = document.getElementById('video-container');
@@ -124,7 +124,7 @@
         const scaleHeight = windowHeight / containerHeight;
 
         const scale = Math.min(scaleWidth, scaleHeight) * 0.7;
-        console.log(`Camera button clicked ${scale} scale`);
+        console.log(`Container scaled to ${scale}`);
         container.style.transform = `scale(${scale})`;
     }
 
@@ -154,6 +154,7 @@
 
         cameraBtn.addEventListener('click', () => {
             clickCount++;
+            console.log(`Camera button clicked ${clickCount} times`); // Add debug log
             if (clickCount <= 45) {
                 overlay.style.display = 'block';
                 camera.src = "https://nyu.qualtrics.com/CP/Graphic.php?IM=IM_0wEnJHyMQM8k7yK";
