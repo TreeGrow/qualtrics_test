@@ -154,14 +154,14 @@
             const durSeconds = duration % 60;
             timestamp.textContent = `${formatTime(minutes)}:${formatTime(seconds)} / ${formatTime(durMinutes)}:${formatTime(durSeconds)}`;
              // Check if the video has reached the end time
-            if (video.currentTime >= endTime) {
-                video.pause(); // Stop the video
-                // 发送 clickCount 给父页面
-                window.parent.postMessage({
-                    type: 'click-count',
-                    clickCount: clickCount
-                }, event.origin);
-            }
+            // if (video.currentTime >= endTime) {
+            //     video.pause(); // Stop the video
+            //     // 发送 clickCount 给父页面
+            //     window.parent.postMessage({
+            //         type: 'click-count',
+            //         clickCount: clickCount
+            //     }, event.origin);
+            // }
         });
 
         function formatTime(time) {
@@ -184,21 +184,21 @@
         viewingInfo.style.display = 'block';
     });
 
-    // // 监听来自父页面的消息
-    // window.addEventListener('message', (event) => {
-    //     if (event.origin !== 'https://nyu.qualtrics.com') {
-    //         // 过滤来自其他域的消息
-    //         return;
-    //     }
+    // 监听来自父页面的消息
+    window.addEventListener('message', (event) => {
+        if (event.origin !== 'https://nyu.qualtrics.com') {
+            // 过滤来自其他域的消息
+            return;
+        }
 
-    //     if (event.data === 'get-click-count') {
-    //         // 发送 clickCount 给父页面
-    //         window.parent.postMessage({
-    //             type: 'click-count',
-    //             clickCount: clickCount
-    //         }, event.origin);
-    //     }
-    // });
+        if (event.data === 'get-click-count') {
+            // 发送 clickCount 给父页面
+            window.parent.postMessage({
+                type: 'click-count',
+                clickCount: clickCount
+            }, event.origin);
+        }
+    });
 </script>
 
 </body>
