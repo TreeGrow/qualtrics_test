@@ -159,11 +159,11 @@
             clickCount++;
             console.log(`Camera button clicked ${clickCount} times`); // Add debug log
             if (clickCount <= 45) {
-                camera.src = "click.png";
+                camera.src = "click-in.png";
                 overlay.style.display = 'block';
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    camera.src = "click-in.png";
+                    camera.src = "click.png";
                 }, 300);
             }
         });
