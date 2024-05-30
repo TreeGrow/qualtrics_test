@@ -108,8 +108,8 @@
 </div>
 
 <script>
-    let clickCount = 0;  //记录相机点击次数
-    const offsetTime = 0; // 7分25秒的时间偏移量
+    let clickCount = 0;  // 记录相机点击次数
+    const offsetTime = 0; // 视频开始播放的时间偏移量
     const container = document.getElementById('video-container');
     const video = document.getElementById('myVideo');
     const timestamp = document.getElementById('timestamp');
@@ -128,15 +128,15 @@
         const scaleWidth = windowWidth / containerWidth;
         const scaleHeight = windowHeight / containerHeight;
 
-        const scale = Math.min(scaleWidth, scaleHeight)*0.7;
-        console.log(`Camera button clicked ${scale} scale`);
+        const scale = Math.min(scaleWidth, scaleHeight) * 0.7;
+        console.log(`Container scaled to ${scale}`);
         container.style.transform = `scale(${scale})`;
     }
 
     window.addEventListener('resize', resizeContainer);
     document.addEventListener('DOMContentLoaded', () => {
         resizeContainer();
-        // Set the video to start from 445 seconds
+        // Set the video to start from offsetTime seconds
         video.addEventListener('loadedmetadata', () => {
             video.currentTime = offsetTime;
         });
@@ -156,15 +156,16 @@
         }
 
         cameraBtn.addEventListener('click', () => {
-           clickCount++;
-           if (clickCount <= 45) {
+            clickCount++;
+            console.log(`Camera button clicked ${clickCount} times`); // Add debug log
+            if (clickCount <= 45) {
                 overlay.style.display = 'block';
                 camera.src = "https://nyu.qualtrics.com/CP/Graphic.php?IM=IM_0wEnJHyMQM8k7yK";
                 setTimeout(() => {
                     overlay.style.display = 'none';
                     camera.src = "https://nyu.qualtrics.com/CP/Graphic.php?IM=IM_a5EJKDaAXc8BuOW";
                 }, 300);
-           }
+            }
         });
 
         viewingInfo.style.display = 'block';
